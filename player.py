@@ -1,5 +1,6 @@
 import deck
 import stdio
+import random
 
 #Goal: create a 'player' class with a deck.
 
@@ -17,12 +18,18 @@ class Player:
 
 def main(): 
 
-    person = Player()
+    cards = deck.makeStandardDeck()
+    random.shuffle(cards)
+    halfIndex = len(cards) / 2 # Not actually sure if this is efficient.
 
-    person.setDeck(deck.makeStandardDeck())
+    person = Player(cards[:halfIndex])
+    person2 = Player(cards[halfIndex:])
 
-    stdio.writeln(person)
+    
+
+    stdio.writeln(f"person 1: {person}\nperson 2: {person2}")
 
     stdio.writeln(person.getDeck())
+    stdio.writeln(person2.getDeck())
 
 if __name__ == "__main__": main()
