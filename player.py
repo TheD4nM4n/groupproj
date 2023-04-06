@@ -23,4 +23,6 @@ def main():
 
     stdio.writeln(person)
 
+    stdio.writeln(person.getDeck())
+
 if __name__ == "__main__": main()
