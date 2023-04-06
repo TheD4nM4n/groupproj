@@ -20,12 +20,12 @@ def main():
 
     cards = deck.makeStandardDeck()
     random.shuffle(cards)
-    halfIndex = len(cards) / 2 # Not actually sure if this is efficient.
+    halfIndex = int(len(cards) / 2 )# Not actually sure if this is efficient.
 
-    person = Player(cards[:halfIndex])
-    person2 = Player(cards[halfIndex:])
+    person, person2 = Player(), Player()
 
-    
+    person.setDeck(cards[:halfIndex])
+    person2.setDeck(cards[halfIndex:])
 
     stdio.writeln(f"person 1: {person}\nperson 2: {person2}")
 
