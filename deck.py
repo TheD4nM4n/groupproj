@@ -40,20 +40,18 @@ class Deck:
         """
         return len(self._cards)
     
+def makeStandardDeck():
+    cards = []
+    ranks = [key for key, value in card.default_rank_dict.items()] 
+    suits = [key for key, value in card.default_suit_dict.items()]
+    for suit in suits:
+        for rank in ranks:
+            cards.append(Card(rank,suit))
+    return cards
+
 if __name__ == '__main__':
-    french_ranks = [key for key, value in card.default_rank_dict.items()] 
-    french_suits = [key for key, value in card.default_suit_dict.items()]
-
-    stdio.writeln(french_ranks)
-    stdio.writeln(french_suits)
-    
-    card_lst = []
-
-    for suit in french_suits:
-        for rank in french_ranks:
-            card_lst.append(Card(rank, suit))
             
-    myDeck = Deck(card_lst)
+    myDeck = Deck(makeStandardDeck())
 
     for card in myDeck:
         stdio.writeln(card)

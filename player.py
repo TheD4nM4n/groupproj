@@ -1,7 +1,12 @@
 import deck
-import card
 
 #Goal: create a 'player' class with a deck.
+
+class Player:
+
+    def __init__(self):
+        self.deck = None
+
 
 def main(): return None
 
