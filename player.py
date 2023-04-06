@@ -13,6 +13,8 @@ class Player:
 
     def setDeck(self,deck): self.deck = deck
 
+    def drawCard(self): return self.deck.pop(0)
+
     def __str__(self): return f"Player with a deck of {len(self.deck)} cards."
 
 
