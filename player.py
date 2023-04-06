@@ -5,7 +5,11 @@ import deck
 class Player:
 
     def __init__(self):
-        self.deck = None
+        self.deck = deck.makeStandardDeck()
+    
+    def getDeck(self): return self.deck
+
+    def setDeck(self,deck): self.deck = deck
 
 
 def main(): return None
