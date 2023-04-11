@@ -19,13 +19,15 @@ class Player:
 
 def compareCards(p1,p2): #returns an array containing a boolean and then another array of cards.
     cards = [p1.drawCard(), p2.drawCard()]
-    while True: # (Remind me to add an exception for when the last cards in the decks have equal values)
+    while True: #a 'while true' statement is scary, but this one is still definite.
         if cards[-2] > cards[-1]: #cards[-2] is always Player 1's card. cards[-1] is always Player 2's card.
             return [False,cards] #The boolean refers to which player won. False = p1, True = p2.
         elif cards[-1] > cards[-2]: 
             return [True,cards] #Player 2 won + here's the cards
         else:
-            cards.extend([p1.drawCard(), p2.drawCard()]) #Draws one card each and appends it to the list.
+            if p1.getDeck(): #p1 and p2 have the same deck length. If there are no more cards, this will be false.
+                cards.extend([p1.drawCard(), p2.drawCard()]) #Draws one card each and appends it to the list.
+            else: return "draw" #Special exception for when the very last card in each deck has the same rank.
 
 def main(): 
 
@@ -38,12 +40,18 @@ def main():
     person.setDeck(cards[:halfIndex])
     person2.setDeck(cards[halfIndex:])
 
+    #person.setDeck([cards[0]])
+    #person2.setDeck([cards[1]])
+
     stdio.writeln(f"person 1: {person}\nperson 2: {person2}")
 
     stdio.writeln(person.getDeck())
     stdio.writeln(person2.getDeck())
 
     testRound = compareCards(person,person2)
-    stdio.writeln(f"\nTest round: Player {testRound[0]+1} wins. \nCards drawn: {testRound[1]}")
+    if type(testRound) == str:
+        stdio.writeln(testRound)
+    else:
+        stdio.writeln(f"\nTest round: Player {testRound[0]+1} wins. \nCards drawn: {testRound[1]}")
 
 if __name__ == "__main__": main()
