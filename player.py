@@ -17,16 +17,15 @@ class Player:
 
     def __str__(self): return f"Player with a deck of {len(self.deck)} cards."
 
-def compareCards(p1,p2):
-    winner = False
+def compareCards(p1,p2): #returns an array containing a boolean and then another array of cards.
     cards = [p1.drawCard(), p2.drawCard()]
-    while not winner:
-        if cards[-2] > cards[-1]: 
-            return [False,cards]
+    while True: # (Remind me to add an exception for when the last cards in the decks have equal values)
+        if cards[-2] > cards[-1]: #cards[-2] is always Player 1's card. cards[-1] is always Player 2's card.
+            return [False,cards] #The boolean refers to which player won. False = p1, True = p2.
         elif cards[-1] > cards[-2]: 
-            return [True,cards]
+            return [True,cards] #Player 2 won + here's the cards
         else:
-            cards.extend([p1.drawCard(), p2.drawCard()])
+            cards.extend([p1.drawCard(), p2.drawCard()]) #Draws one card each and appends it to the list.
 
 def main(): 
 
