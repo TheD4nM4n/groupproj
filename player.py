@@ -40,12 +40,18 @@ def main():
     person.setDeck(cards[:halfIndex])
     person2.setDeck(cards[halfIndex:])
 
+    #person.setDeck([cards[0]])
+    #person2.setDeck([cards[1]])
+
     stdio.writeln(f"person 1: {person}\nperson 2: {person2}")
 
     stdio.writeln(person.getDeck())
     stdio.writeln(person2.getDeck())
 
     testRound = compareCards(person,person2)
-    stdio.writeln(f"\nTest round: Player {testRound[0]+1} wins. \nCards drawn: {testRound[1]}")
+    if type(testRound) == str:
+        stdio.writeln(testRound)
+    else:
+        stdio.writeln(f"\nTest round: Player {testRound[0]+1} wins. \nCards drawn: {testRound[1]}")
 
 if __name__ == "__main__": main()
