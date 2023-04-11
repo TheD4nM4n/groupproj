@@ -15,5 +15,9 @@ stddraw.setPenColor(stddraw.BLACK)
 stddraw.setFontSize(28)
 stddraw.text(c.P1_TEXT_X, c.P1_TEXT_Y, "Player 1")
 stddraw.text(c.P2_TEXT_X, c.P2_TEXT_Y, "Player 2")
+
+stddraw.setFontSize(50)
+stddraw.text(c.P1_SCORE_X, c.P1_SCORE_Y, "0")
+stddraw.text(c.P2_SCORE_X, c.P2_SCORE_Y, "0")
 while True:
     stddraw.show()
