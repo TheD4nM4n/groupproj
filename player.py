@@ -26,7 +26,7 @@ def compareCards(p1,p2):
         elif cards[-1] > cards[-2]: 
             return [True,cards]
         else:
-            cards.extend(p1.drawCard(), p2.drawCard())
+            cards.extend([p1.drawCard(), p2.drawCard()])
 
 def main(): 
 
