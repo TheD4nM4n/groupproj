@@ -96,8 +96,6 @@ class Card:
         Value of ranks and suits are provided by the encoding dictionaries passed to the 
         constructor.
         """
-        if self._rank == other._rank:
-            return self._suit > other._suit
 
         return self._rank > other._rank
 

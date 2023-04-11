@@ -17,6 +17,16 @@ class Player:
 
     def __str__(self): return f"Player with a deck of {len(self.deck)} cards."
 
+def compareCards(p1,p2):
+    winner = False
+    cards = [p1.drawCard(), p2.drawCard()]
+    while not winner:
+        if cards[-2] > cards[-1]: 
+            return [False,cards]
+        elif cards[-1] > cards[-2]: 
+            return [True,cards]
+        else:
+            cards.extend([p1.drawCard(), p2.drawCard()])
 
 def main(): 
 
@@ -34,9 +44,7 @@ def main():
     stdio.writeln(person.getDeck())
     stdio.writeln(person2.getDeck())
 
-    c1 = person.drawCard()
-    c2 = person2.drawCard()
-
-    stdio.writeln(f"{c1} > {c2}: {c1 > c2}")
+    testRound = compareCards(person,person2)
+    stdio.writeln(f"\nTest round: Player {testRound[0]+1} wins. \nCards drawn: {testRound[1]}")
 
 if __name__ == "__main__": main()
