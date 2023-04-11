@@ -34,4 +34,9 @@ def main():
     stdio.writeln(person.getDeck())
     stdio.writeln(person2.getDeck())
 
+    c1 = person.drawCard()
+    c2 = person2.drawCard()
+
+    stdio.writeln(f"{c1} > {c2}: {c1 > c2}")
+
 if __name__ == "__main__": main()
