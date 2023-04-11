@@ -19,13 +19,15 @@ class Player:
 
 def compareCards(p1,p2): #returns an array containing a boolean and then another array of cards.
     cards = [p1.drawCard(), p2.drawCard()]
-    while True: # (Remind me to add an exception for when the last cards in the decks have equal values)
+    while True: #a 'while true' statement is scary, but this one is still definite.
         if cards[-2] > cards[-1]: #cards[-2] is always Player 1's card. cards[-1] is always Player 2's card.
             return [False,cards] #The boolean refers to which player won. False = p1, True = p2.
         elif cards[-1] > cards[-2]: 
             return [True,cards] #Player 2 won + here's the cards
         else:
-            cards.extend([p1.drawCard(), p2.drawCard()]) #Draws one card each and appends it to the list.
+            if p1.getDeck(): #p1 and p2 have the same deck length. If there are no more cards, this will be false.
+                cards.extend([p1.drawCard(), p2.drawCard()]) #Draws one card each and appends it to the list.
+            else: return "draw" #Special exception for when the very last card in each deck has the same rank.
 
 def main(): 
 
