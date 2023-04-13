@@ -66,12 +66,35 @@ if __name__ == "__main__":
             m_X = stddraw.mouseX()
             m_Y = stddraw.mouseY()
             if draw_button.clicked(m_X, m_Y):
-                p1_card = player_1.drawCard()
-                p2_card = player_2.drawCard()
+                tied = True
+                played_cards = []
+                while tied:
+                    p1_card = player_1.drawCard()
+                    p2_card = player_2.drawCard()
+                    played_cards.extend((p1_card, p2_card))
+                    if played_cards[-2] > played_cards[-1]: #cards[-2] is always Player 1's card. cards[-1] is always Player 2's card.
+                        tied = False
+                        p1_score += len(played_cards)
+                    elif played_cards[-1] > played_cards[-2]: 
+                        tied = False
+                        p2_score += len(played_cards)
+                    else:
+                        if player_1.getDeck(): #p1 and p2 have the same deck length. If there are no more cards, this will be false.
+                            played_cards.extend([player_1.drawCard(), player_2.drawCard()]) #Draws one card each and appends it to the list.
+                        else: draw_button.deactivate()
         
+        if not player_1.getDeck():
+            draw_button.deactivate()
+            if p1_score > p2_score:
+                stddraw.text(640, 72, "Player 1 wins!")
+            elif p2_score > p1_score:
+                stddraw.text(640, 72, "Player 2 wins!")
+            else:
+                stddraw.text(640, 72, "It's a draw!")
+
         if isinstance(p1_card, Card):
             GraphicalCard(p1_card.get_rank(), p1_card.get_suit()).draw(640, 180)
             GraphicalCard(p2_card.get_rank(), p2_card.get_suit()).draw(640, 540)
         
-        
+
         stddraw.show(0)
